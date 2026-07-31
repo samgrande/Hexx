@@ -1,25 +1,58 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
+const text =
+  "I believe design and engineering go hand in hand — one cannot survive on its own, and that is what I try to implement through my work in every project. With 5+ years of experience, I blend engineering precision with design craft to build products that are not just useful, but feel exceptional to use.";
+
+const words = text.split(" ");
+
+// Section 3 — the philosophy / about-me paragraph with word-by-word reveal.
 export default function Intro() {
+  const ref = useRef<HTMLParagraphElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.25 });
+
   return (
-    <section className="snap-section relative flex min-h-[60vh] w-full flex-col justify-between overflow-hidden bg-ink px-6 pt-16 pb-10 sm:px-10 sm:pt-20 md:px-16">
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        className="max-w-3xl font-display text-[clamp(0.95rem,1.8vw,1.6rem)] leading-loose text-white/90 sm:mx-8"
+    <section className="snap-section relative flex min-h-[60vh] w-full flex-col justify-between overflow-hidden bg-ink px-6 pt-20 pb-14 sm:px-10 sm:pt-24 md:px-16 lg:px-20">
+      {/* Section label */}
+      <motion.span
+        initial={{ opacity: 0, x: -10 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="mb-10 block select-none font-body text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-white/35"
       >
-        I believe design and engineering goes hand in hand, one cannot
-        survive on its own and that is what I try to implement through my
-        work in every project. With my 5 years&nbsp;
-        <span className="text-white">+</span>&nbsp;experience and my not so
-        recent found interest in software engineering I try to blend
-        engineering and design in a product that is not only useful but
-        feels good to use.
-      </motion.p>
+        &lt;&nbsp;About me&nbsp;&gt;
+      </motion.span>
+
+      {/* Word-by-word reveal paragraph */}
+      <p
+        ref={ref}
+        className="max-w-4xl font-display text-[clamp(1.15rem,2.4vw,2rem)] italic leading-[1.6] tracking-[-0.005em] text-white/90 sm:mx-4 md:mx-0"
+      >
+        {words.map((w, i) => (
+          <motion.span
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.4,
+              ease: [0.22, 1, 0.36, 1],
+              delay: i * 0.022,
+            }}
+            className="inline-block mr-[0.28em]"
+          >
+            {w === "5+" ? (
+              <span className="text-white font-semibold not-italic">{w}</span>
+            ) : w === "exceptional" ? (
+              <span className="text-white not-italic">{w}</span>
+            ) : (
+              w
+            )}
+          </motion.span>
+        ))}
+      </p>
     </section>
   );
 }

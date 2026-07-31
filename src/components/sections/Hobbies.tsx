@@ -5,8 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import DraggablePhotoStrip from "../DraggablePhotoStrip";
 import { collagePhotos } from "@/data/content";
 
-// Section 4 — the hobbies section: a drag-to-move photo carousel of
-// gaming/cars shots with a caption that follows the centered card.
+// Section 4 — the hobbies section: drag-to-move photo carousel.
 const hobbies = [
   {
     title: "GYM",
@@ -33,22 +32,29 @@ export default function Hobbies() {
         onActiveChange={setActive}
       />
 
-      {/* scrim so the caption stays legible over the photos */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-ink via-ink/70 to-transparent" />
+      {/* Bottom scrim for legibility */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%] bg-gradient-to-t from-ink via-ink/75 to-transparent" />
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-[6%] z-20 px-6 text-center sm:bottom-[8%]">
+      {/* Caption overlay */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-[7%] z-20 px-6 text-center sm:bottom-[9%]">
         <AnimatePresence mode="wait">
           <motion.div
             key={active}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="font-display text-[clamp(1.8rem,5vw,4rem)] italic leading-none text-white">
+            {/* Section label above title */}
+            <span className="mb-3 block font-body text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-white/35">
+              &lt;&nbsp;When I&apos;m not coding&nbsp;&gt;
+            </span>
+
+            <h2 className="font-display text-[clamp(2.2rem,6vw,5rem)] italic leading-[0.95] tracking-[-0.02em] text-white">
               {hobbies[active].title}
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl font-body text-[clamp(0.85rem,1.2vw,1.1rem)] leading-relaxed text-white/70">
+
+            <p className="mx-auto mt-4 max-w-md font-body text-[clamp(0.82rem,1.15vw,1rem)] font-light leading-[1.7] text-white/60">
               {hobbies[active].text}
             </p>
           </motion.div>

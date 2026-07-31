@@ -23,7 +23,7 @@ export default function Marquee({
 }: MarqueeProps) {
   return (
     <div
-      className={`relative w-full overflow-hidden ${className}`}
+      className={`relative w-full overflow-x-hidden ${className}`}
       style={{
         maskImage:
           "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",

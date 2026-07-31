@@ -1,36 +1,29 @@
 import type { Metadata } from "next";
-import { Roboto, Roboto_Condensed, Bodoni_Moda } from "next/font/google";
+import { Bodoni_Moda, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-// Bodoni Moda stands in for the Figma file's "Triodion" display face —
-// Triodion is not a licensed web font. Swap the import below for your
-// licensed Triodion font-face (see the comment in tailwind.config.ts)
-// once you have the files, and this substitution disappears everywhere.
+// Bodoni Moda — editorial display face for headlines.
 const bodoniModa = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-triodion",
   display: "swap",
 });
 
-const robotoCondensed = Roboto_Condensed({
+// Plus Jakarta Sans — clean, geometric sans for body copy & labels.
+// Replaces Roboto Condensed for a more premium feel.
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
-  variable: "--font-roboto-condensed",
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-roboto",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Sayan Biswas — Portfolio",
-  description: "Frontend developer portfolio — Sayan Biswas",
+  description:
+    "Frontend developer & designer — Sayan Biswas. Building things that feel as good as they look.",
 };
 
 export default function RootLayout({
@@ -41,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${bodoniModa.variable} ${robotoCondensed.variable} ${roboto.variable} bg-ink text-white antialiased`}
+        className={`${bodoniModa.variable} ${jakarta.variable} bg-ink text-white antialiased`}
       >
         {children}
       </body>

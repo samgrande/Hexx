@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
+import GlitchText from "@/components/GlitchText";
 
 /**
  * The "and I make / cool [portrait] stuffs" headline. Rendered once,
@@ -18,16 +19,30 @@ export default function CoolStuffsHandoff() {
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-25%", "25%"]);
 
   return (
-    <div className="mt-10 flex w-full flex-col items-center gap-2 px-6 pb-16 sm:pb-24">
-      <span className="mr-60 select-none font-display text-[clamp(1.3rem,2.3vw,1.3rem)] italic text-white/90">
+    <div className="mt-8 flex w-full flex-col items-center gap-1.5 px-4 pb-12 sm:pb-20">
+      {/* "and I make" sub-label */}
+      <motion.span
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="mb-1 mr-48 select-none self-center font-body text-[clamp(0.7rem,1.1vw,0.95rem)] font-light italic text-white/45 sm:mr-60"
+      >
         and I make
-      </span>
+      </motion.span>
 
-      <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10">
-        <h1 className="select-none font-display text-[clamp(8rem,15vw,13rem)] italic leading-none text-white">
+      <GlitchText className="flex items-center justify-center gap-4 sm:gap-7 md:gap-10" strength={28}>
+        <motion.h1
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="select-none font-display text-[clamp(7rem,14vw,12rem)] italic leading-none tracking-[-0.03em] text-white"
+        >
           cool
-        </h1>
+        </motion.h1>
 
+        {/* Parallax portrait */}
         <div
           ref={imgRef}
           className="relative h-[18vh] w-[24vw] max-h-[160px] max-w-[280px] shrink-0 overflow-hidden rounded-[2rem] sm:h-[22vh] sm:w-[28vw]"
@@ -47,10 +62,16 @@ export default function CoolStuffsHandoff() {
           </motion.div>
         </div>
 
-        <h1 className="select-none font-display text-[clamp(8rem,15vw,13rem)] italic leading-none text-white">
+        <motion.h1
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.06 }}
+          className="select-none font-display text-[clamp(7rem,14vw,12rem)] italic leading-none tracking-[-0.03em] text-white"
+        >
           stuffs
-        </h1>
-      </div>
+        </motion.h1>
+      </GlitchText>
     </div>
   );
 }

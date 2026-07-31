@@ -10,16 +10,21 @@ const config: Config = {
         pill: "rgba(217,217,217,0.07)",
       },
       fontFamily: {
-        // "display" maps to whatever font sets --font-triodion in
-        // src/app/layout.tsx. It's currently Bodoni Moda (Google Fonts)
-        // standing in for the Figma file's licensed "Triodion" face —
-        // swap the next/font import there once you have the real files.
+        // "display" = Bodoni Moda (editorial serif for headlines)
         display: ["var(--font-triodion)", "Georgia", "serif"],
-        body: ["var(--font-roboto-condensed)", "sans-serif"],
-        label: ["var(--font-roboto)", "sans-serif"],
+        // "body" = Plus Jakarta Sans (clean geometric sans for copy & labels)
+        body: ["var(--font-jakarta)", "system-ui", "sans-serif"],
+        // "label" kept as an alias for body for backwards compat
+        label: ["var(--font-jakarta)", "system-ui", "sans-serif"],
       },
       screens: {
         xs: "420px",
+      },
+      letterSpacing: {
+        tightest: "-0.04em",
+        tighter: "-0.025em",
+        // brand tracking for display headings
+        display: "-0.015em",
       },
     },
   },

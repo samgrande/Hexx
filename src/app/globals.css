@@ -25,6 +25,42 @@ body {
   position: relative;
 }
 
+/* ─── Ambient glow layers ──────────────────────────────────────────────────── */
+
+/* Top radial — cold blue tint */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      rgba(120, 140, 255, 0.07),
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 100%,
+      rgba(255, 200, 120, 0.04),
+      transparent 60%
+    );
+}
+
+/* Subtle noise texture overlay for depth */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ─── Scroll snap ──────────────────────────────────────────────────────────── */
 /* Markers for the smooth scroll snap (SmoothScrollSnap.tsx). Native CSS
    scroll-snap (scroll-snap-type: y mandatory) is kept active as a fallback
    for touch/keyboard; the JS component animates wheel gestures to these
@@ -34,20 +70,7 @@ body {
   scroll-snap-align: start;
 }
 
-/* Subtle depth so pure black doesn't read completely flat */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(
-    circle at 50% 0%,
-    rgba(255, 255, 255, 0.05),
-    transparent 55%
-  );
-}
-
+/* ─── Scrollbar ────────────────────────────────────────────────────────────── */
 /* Hide scrollbars on the horizontal track while keeping it scrollable */
 .no-scrollbar {
   scrollbar-width: none;
@@ -57,12 +80,50 @@ body::before {
   display: none;
 }
 
-/* Utility for images that shouldn't be draggable via native browser drag */
+/* Thin, subtle vertical scrollbar for browsers that show it */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+}
+
+/* ─── Images ───────────────────────────────────────────────────────────────── */
 img {
   -webkit-user-drag: none;
   user-select: none;
 }
 
+/* ─── Gradient text utility ────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0.55) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Glass card utility ───────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+/* ─── Reduced motion ───────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
