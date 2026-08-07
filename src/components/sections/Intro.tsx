@@ -14,14 +14,14 @@ export default function Intro() {
   const inView = useInView(ref, { once: true, amount: 0.25 });
 
   return (
-    <section className="snap-section relative flex min-h-[60vh] w-full flex-col justify-between overflow-hidden bg-ink px-6 pt-20 pb-14 sm:px-10 sm:pt-24 md:px-16 lg:px-20">
+    <section className="snap-section relative flex min-h-[60vh] w-full flex-col justify-start overflow-hidden bg-ink px-6 pt-20 pb-14 sm:px-10 sm:pt-24 md:px-16 lg:px-20">
       {/* Section label */}
       <motion.span
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="mb-10 block select-none font-body text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-white/35"
+        className="mb-4 block select-none font-body text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-white/35"
       >
         &lt;&nbsp;About me&nbsp;&gt;
       </motion.span>
@@ -29,7 +29,7 @@ export default function Intro() {
       {/* Word-by-word reveal paragraph */}
       <p
         ref={ref}
-        className="max-w-4xl font-display text-[clamp(1.15rem,2.4vw,2rem)] italic leading-[1.6] tracking-[-0.005em] text-white/90 sm:mx-4 md:mx-0"
+        className="max-w-4xl font-body text-[clamp(1.05rem,2vw,1.4rem)] font-light leading-[1.7] tracking-[-0.005em] text-white/80 sm:mx-4 md:mx-0"
       >
         {words.map((w, i) => (
           <motion.span
@@ -43,13 +43,7 @@ export default function Intro() {
             }}
             className="inline-block mr-[0.28em]"
           >
-            {w === "5+" ? (
-              <span className="text-white font-semibold not-italic">{w}</span>
-            ) : w === "exceptional" ? (
-              <span className="text-white not-italic">{w}</span>
-            ) : (
-              w
-            )}
+            {w}
           </motion.span>
         ))}
       </p>

@@ -17,7 +17,7 @@ export const projects = [
   },
   {
     id: "futoshiki",
-    name: "SIMPLE FUTOSHIKI",
+    name: "FUTOSHIKI",
     description:
       "A clean, modern Futoshiki puzzle game built with Kotlin and Jetpack Compose, with full-fledged animations thanks to the KorGE engine and custom theming.",
     image:

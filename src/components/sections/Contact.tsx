@@ -56,8 +56,9 @@ export default function Contact() {
           Want to build something together?
         </p>
 
-        <h2 className="mt-5 flex items-center gap-2 font-display text-[clamp(1.2rem,2vw,1.7rem)] italic leading-tight tracking-[-0.01em] text-white">
-          <span>&lt; Let&apos;s Work Together</span>
+        <h2 className="mt-5 flex items-center gap-2 font-mono text-[clamp(0.9rem,1.4vw,1.1rem)] leading-tight tracking-[-0.01em] text-white">
+          <span className="font-bold">&lt;</span>
+          <span>Let&apos;s Work Together</span>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -67,12 +68,12 @@ export default function Contact() {
             <path
               d="M5 19 19 5M19 5v6M19 5h-6"
               stroke="currentColor"
-              strokeWidth="1.5"
+              strokeWidth="2.75"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-          <span>&gt;</span>
+          <span className="font-bold">&gt;</span>
         </h2>
       </motion.div>
 

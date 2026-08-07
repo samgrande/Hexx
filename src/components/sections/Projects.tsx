@@ -70,7 +70,7 @@ export default function Projects() {
         Which is not limited to — but definitely includes — some of my projects below.
       </motion.p>
 
-      <div className="flex w-full max-w-[90rem] items-center justify-center gap-3 sm:gap-6">
+      <div className="mt-[10vh] flex w-full max-w-[90rem] items-center justify-center gap-3 sm:gap-6">
         <button
           aria-label="Previous projects"
           onClick={prev}
@@ -80,7 +80,7 @@ export default function Projects() {
           <Chevron direction="left" />
         </button>
 
-        <div className="grid w-full grid-cols-1 gap-5 overflow-hidden sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <div className="grid w-full grid-cols-1 gap-5 overflow-x-clip sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
           <AnimatePresence mode="wait" custom={dir}>
             {visible.map((project, idx) => (
               <motion.article
@@ -95,36 +95,49 @@ export default function Projects() {
                   delay: idx * 0.06,
                 }}
                 whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                className="glass group flex flex-row items-start gap-4 rounded-2xl p-5 sm:flex-col sm:gap-6 sm:p-7 transition-colors duration-300"
+                className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b0d0f] shadow-[0_16px_50px_-20px_rgba(0,0,0,0.9)] transition-colors duration-300 hover:border-white/25"
               >
-                {/* Project image */}
-                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-white/[0.04] ring-1 ring-white/[0.06] sm:h-[72px] sm:w-[72px]">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    sizes="72px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-
-                <div className="flex min-w-0 flex-1 flex-col gap-1.5 sm:gap-2.5">
-                  <h3 className="font-display text-[clamp(1.1rem,1.8vw,1.65rem)] italic leading-tight tracking-[-0.01em] text-white">
-                    {project.name}
-                  </h3>
-                  <p className="font-body text-[clamp(0.78rem,1vw,0.9rem)] font-light leading-[1.65] text-white/55 sm:leading-[1.7]">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Hover indicator */}
-                <div className="mt-auto flex items-center gap-1.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <span className="font-body text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/40">
-                    View project
+                {/* Terminal title bar */}
+                <div className="flex items-center gap-1.5 border-b border-white/[0.07] bg-white/[0.03] px-4 py-2.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                  <span className="ml-2 font-mono text-[0.68rem] tracking-wide text-white/35">
+                    ~/projects/{project.id}
                   </span>
-                  <svg viewBox="0 0 16 16" className="h-2.5 w-2.5 text-white/40" fill="none">
-                    <path d="M3 13 13 3M13 3v4M13 3H9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                </div>
+
+                {/* Terminal body — icon left of text */}
+                <div className="flex flex-1 items-start gap-4 p-5 sm:gap-5 sm:p-6">
+                  <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md bg-white/[0.04] ring-1 ring-white/10 sm:h-11 sm:w-11">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      sizes="44px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+
+                  <div className="flex min-w-0 flex-1 flex-col gap-2">
+                    <h3 className="font-body text-[clamp(1.05rem,1.6vw,1.35rem)] leading-tight tracking-[-0.01em] text-white">
+                      {project.name}
+                    </h3>
+                    <p className="font-body text-[clamp(0.76rem,1vw,0.88rem)] font-light leading-[1.65] text-white/55">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Terminal footer */}
+                <div className="flex items-center justify-between gap-3 border-t border-white/[0.07] px-5 py-2.5 font-mono text-[0.7rem]">
+                  <span className="text-white/35">
+                    ➜ <span className="text-white/60">~/projects</span>
+                  </span>
+                  <span className="flex items-center gap-1.5 text-white/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    open {project.name.toLowerCase()}
+                    <span className="inline-block h-3 w-1.5 animate-pulse bg-white/60" />
+                  </span>
                 </div>
               </motion.article>
             ))}
