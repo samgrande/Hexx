@@ -65,7 +65,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="-mt-2 max-w-lg text-center font-body text-[clamp(0.85rem,1.4vw,1rem)] font-light leading-relaxed text-white/50"
+        className="-mt-2 whitespace-nowrap text-center font-body text-[clamp(0.85rem,1.4vw,1rem)] font-light leading-relaxed text-white/50"
       >
         Which is not limited to — but definitely includes — some of my projects below.
       </motion.p>
@@ -95,7 +95,7 @@ export default function Projects() {
                   delay: idx * 0.06,
                 }}
                 whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#0b0d0f] shadow-[0_16px_50px_-20px_rgba(0,0,0,0.9)] transition-colors duration-300 hover:border-white/25"
+                className="group flex flex-col overflow-hidden rounded-xl border border-white/10 bg-[#070809] shadow-[0_16px_50px_-20px_rgba(0,0,0,0.9)] transition-colors duration-300 hover:border-white/25"
               >
                 {/* Terminal title bar */}
                 <div className="flex items-center gap-1.5 border-b border-white/[0.07] bg-white/[0.03] px-4 py-2.5">
@@ -129,12 +129,19 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Terminal footer */}
-                <div className="flex items-center justify-between gap-3 border-t border-white/[0.07] px-5 py-2.5 font-mono text-[0.7rem]">
-                  <span className="text-white/35">
-                    ➜ <span className="text-white/60">~/projects</span>
-                  </span>
-                  <span className="flex items-center gap-1.5 text-white/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                {/* Terminal footer — language pills */}
+                <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.07] px-5 py-2.5">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {project.languages.map((lang) => (
+                      <span
+                        key={lang}
+                        className="rounded-md border border-white/10 bg-white/[0.04] px-2 py-0.5 font-mono text-[0.62rem] tracking-wide text-white/50"
+                      >
+                        {lang}
+                      </span>
+                    ))}
+                  </div>
+                  <span className="flex items-center gap-1.5 font-mono text-[0.7rem] text-white/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     open {project.name.toLowerCase()}
                     <span className="inline-block h-3 w-1.5 animate-pulse bg-white/60" />
                   </span>

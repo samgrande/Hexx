@@ -6,6 +6,7 @@ export const projects = [
       "A fully client-side Android dashboard that communicates with a physical device over USB via the WebUSB API. No backend, no companion app, no native binaries — just a browser tab. Built with React 19 and Material 3.",
     image:
       "https://github.com/samgrande/YAADU/raw/main/assets/hero.png",
+    languages: ["TypeScript", "CSS", "HTML"],
   },
   {
     id: "ringr",
@@ -14,6 +15,7 @@ export const projects = [
       "RingR lets you convert YouTube videos into ringtones directly on your device — no server uploads, no file transfers, no accounts. Everything happens locally, so your audio never leaves your phone.",
     image:
       "https://github.com/samgrande/RingR/raw/master/app/src/main/banner.png",
+    languages: ["Kotlin", "Java"],
   },
   {
     id: "futoshiki",
@@ -22,6 +24,7 @@ export const projects = [
       "A clean, modern Futoshiki puzzle game built with Kotlin and Jetpack Compose, with full-fledged animations thanks to the KorGE engine and custom theming.",
     image:
       "https://github.com/samgrande/Simple-Futoshiki/raw/main/fastlane/metadata/android/en-US/images/icon.png",
+    languages: ["Kotlin", "Jetpack Compose"],
   },
 ];
 
@@ -69,7 +72,7 @@ export const techStack: TechPill[] = [
 ];
 
 export const socials = [
-  { label: "Gmail", href: "mailto:hello@example.com" },
-  { label: "Linkedin", href: "https://linkedin.com/in/your-handle" },
-  { label: "Instagram", href: "https://instagram.com/your-handle" },
+  { label: "Github", href: "https://github.com/samgrande" },
+  { label: "Linkedin", href: "https://www.linkedin.com/in/sayan-biswas-4b3a79152/" },
+  { label: "Instagram", href: "https://www.instagram.com/_aerez_/" },
 ];
